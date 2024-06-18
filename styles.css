@@ -1,3 +1,17 @@
 h1 {
     background-color: cyan;
 }
+
+.frame {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.container {
+    width: max-content
+}
+
+img {
+    width: 200px;
+}
