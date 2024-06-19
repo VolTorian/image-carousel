@@ -9,7 +9,9 @@ h1 {
 }
 
 .container {
-    width: max-content
+    width: max-content;
+    display: flex;
+    margin-left: 0px;
 }
 
 img {
