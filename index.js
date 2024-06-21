@@ -10,12 +10,19 @@ console.log(totalWidth);
 
 function prevImage() {
     let currentMargin = parseInt(containerStyle.marginLeft);
-    container.style.marginLeft = Math.min(currentMargin + imgWidth, 0).toString() + "px";
+
+    if (currentMargin === 0) {
+        currentMargin = 0 - totalWidth;
+    }
+    container.style.marginLeft = (currentMargin + imgWidth).toString() + "px";
 }
 
 function nextImage() {
     let currentMargin = parseInt(containerStyle.marginLeft);
-    container.style.marginLeft = Math.max(currentMargin - imgWidth, 0 - totalWidth + imgWidth).toString() + "px";
+    if (currentMargin === 0 - totalWidth + imgWidth) {
+        currentMargin = 0 + imgWidth;
+    }
+    container.style.marginLeft = (currentMargin - imgWidth).toString() + "px";
 }
 
 const prevButton = document.getElementsByClassName("previous")[0].addEventListener("click", prevImage);
