@@ -1,8 +1,34 @@
-let count = document.querySelectorAll(".container img").length;
-let imgWidth = parseInt(window.getComputedStyle(document.querySelector(".container img")).getPropertyValue("width"));
-let totalWidth = parseInt(window.getComputedStyle(document.querySelector(".container")).getPropertyValue("width"));
+class ImageCarousel {
+    constructor(elementId, images) {
+        this.target = document.getElementById(elementId);
 
-let container = document.getElementsByClassName("container")[0];
+        if (this.target === null) {
+            console.log(`Element with ID ${elementId} not found!`);
+            return;
+        }
+
+        const frame = document.createElement("div");
+        frame.classList.add("image-carousel-frame");
+        this.target.appendChild(frame);
+
+        const container = document.createElement("div");
+        container.classList.add("image-carousel-container")
+        images.forEach((image) => {
+            const imgElement = document.createElement("img");
+            imgElement.src = image;
+            container.appendChild(imgElement);
+        });
+        frame.appendChild(container);
+    }
+}
+
+const test = new ImageCarousel("test-carousel", ["./images/barberry.png", "./images/chilli.png", "./images/pepper.png", "./images/saffron.png"]);
+
+let count = document.querySelectorAll(".image-carousel-container img").length;
+let imgWidth = parseInt(window.getComputedStyle(document.querySelector(".image-carousel-container img")).getPropertyValue("width"));
+let totalWidth = parseInt(window.getComputedStyle(document.querySelector(".image-carousel-container")).getPropertyValue("width"));
+
+let container = document.getElementsByClassName("image-carousel-container")[0];
 const containerStyle = window.getComputedStyle(container);
 
 console.log(imgWidth);

@@ -2,13 +2,13 @@ h1 {
     background-color: cyan;
 }
 
-.frame {
+.image-carousel-frame {
     width: 200px;
     height: 200px;
     overflow: hidden;
 }
 
-.container {
+.image-carousel-container {
     width: max-content;
     display: flex;
     margin-left: 0px;
