@@ -73,5 +73,5 @@ function nextImage() {
     container.style.marginLeft = (currentMargin - imgWidth).toString() + "px";
 }
 
-const prevButton = document.getElementsByClassName("previous")[0].addEventListener("click", prevImage);
-const nextButton = document.getElementsByClassName("next")[0].addEventListener("click", nextImage);
+const prevButton = document.getElementsByClassName("image-carousel-previous")[0].addEventListener("click", prevImage);
+const nextButton = document.getElementsByClassName("image-carousel-next")[0].addEventListener("click", nextImage);
