@@ -9,16 +9,38 @@ class ImageCarousel {
 
         const frame = document.createElement("div");
         frame.classList.add("image-carousel-frame");
-        this.target.appendChild(frame);
 
         const container = document.createElement("div");
-        container.classList.add("image-carousel-container")
+        container.classList.add("image-carousel-container");
+        const selector = document.createElement("div");
+        selector.classList.add("image-carousel-selector");
+        
         images.forEach((image) => {
             const imgElement = document.createElement("img");
             imgElement.src = image;
             container.appendChild(imgElement);
+
+            const circle = document.createElement("span");
+            circle.classList.add("image-carousel-circle");
+            selector.appendChild(circle);
         });
         frame.appendChild(container);
+
+        const controls = document.createElement("div");
+        controls.classList.add("image-carousel-controls");
+        const buttons = document.createElement("div");
+        buttons.classList.add("image-carousel-buttons");
+        controls.append(selector, buttons);
+
+        const prevButton = document.createElement("button");
+        prevButton.classList.add("image-carousel-previous");
+        prevButton.textContent = "Previous";
+        const nextButton = document.createElement("button");
+        nextButton.classList.add("image-carousel-next");
+        nextButton.textContent = "Next";
+        buttons.append(prevButton, nextButton);
+
+        this.target.append(frame, controls);
     }
 }
 
