@@ -12,21 +12,21 @@ class ImageCarousel {
         const frame = document.createElement("div");
         frame.classList.add("image-carousel-frame");
 
-        const container = document.createElement("div");
-        container.classList.add("image-carousel-container");
+        this.container = document.createElement("div");
+        this.container.classList.add("image-carousel-container");
         // const selector = document.createElement("div");
         // selector.classList.add("image-carousel-selector");
         
         images.forEach((image) => {
             const imgElement = document.createElement("img");
             imgElement.src = image;
-            container.appendChild(imgElement);
+            this.container.appendChild(imgElement);
 
             // const circle = document.createElement("span");
             // circle.classList.add("image-carousel-circle");
             // selector.appendChild(circle);
         });
-        frame.appendChild(container);
+        frame.appendChild(this.container);
 
         const controls = document.createElement("div");
         controls.classList.add("image-carousel-controls");
@@ -42,23 +42,24 @@ class ImageCarousel {
         nextButton.classList.add("image-carousel-next");
         nextButton.textContent = "Next";
         buttons.append(prevButton, nextButton);
-        prevButton.addEventListener("click", this.prevImage);
-        nextButton.addEventListener("click", this.nextImage);
 
         this.target.append(frame, controls);
 
         this.imgWidth = parseInt(window.getComputedStyle(document.querySelector(".image-carousel-container img")).getPropertyValue("width"));
         this.totalWidth = parseInt(window.getComputedStyle(document.querySelector(".image-carousel-container")).getPropertyValue("width"));
-        this.containerStyle = window.getComputedStyle(container);
+        this.containerStyle = window.getComputedStyle(this.container);
+
+        prevButton.addEventListener("click", () => this.prevImage());
+        nextButton.addEventListener("click", () => this.nextImage());
     }
 
     prevImage() {
-        let currentMargin = parseInt(this.containerStyle.marginLeft);
+        let currentMargin = parseInt(window.getComputedStyle(this.container).marginLeft);
     
         if (currentMargin === 0) {
             currentMargin = 0 - this.totalWidth;
         }
-        container.style.marginLeft = (currentMargin + this.imgWidth).toString() + "px";
+        this.container.style.marginLeft = (currentMargin + this.imgWidth).toString() + "px";
     }
 
     nextImage() {
@@ -66,7 +67,7 @@ class ImageCarousel {
         if (currentMargin === 0 - this.totalWidth + this.imgWidth) {
             currentMargin = 0 + this.imgWidth;
         }
-        container.style.marginLeft = (currentMargin - this.imgWidth).toString() + "px";
+        this.container.style.marginLeft = (currentMargin - this.imgWidth).toString() + "px";
     }
 }
 

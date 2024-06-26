@@ -1,4 +1,5 @@
 import ImageCarousel from './ImageCarousel.js';
+
 import barberry from './images/barberry.png';
 import chilli from './images/chilli.png';
 import pepper from './images/pepper.png';
