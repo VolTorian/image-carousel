@@ -14,25 +14,27 @@ class ImageCarousel {
 
         this.container = document.createElement("div");
         this.container.classList.add("image-carousel-container");
-        // const selector = document.createElement("div");
-        // selector.classList.add("image-carousel-selector");
-        
-        images.forEach((image) => {
+        const selector = document.createElement("div");
+        selector.classList.add("image-carousel-selector");
+
+        for (let i = 0; i < images.length; i++) {
             const imgElement = document.createElement("img");
-            imgElement.src = image;
+            imgElement.src = images[i];
             this.container.appendChild(imgElement);
 
-            // const circle = document.createElement("span");
-            // circle.classList.add("image-carousel-circle");
-            // selector.appendChild(circle);
-        });
+            const circle = document.createElement("span");
+            circle.classList.add("image-carousel-circle");
+            circle.addEventListener("click", (event) => this.selectImage(event, i));
+            selector.appendChild(circle);
+        }
+
         frame.appendChild(this.container);
 
         const controls = document.createElement("div");
         controls.classList.add("image-carousel-controls");
         const buttons = document.createElement("div");
         buttons.classList.add("image-carousel-buttons");
-        // controls.append(selector, buttons);
+        controls.append(selector, buttons);
         controls.append(buttons);
 
         const prevButton = document.createElement("button");
@@ -68,6 +70,11 @@ class ImageCarousel {
             currentMargin = 0 + this.imgWidth;
         }
         this.container.style.marginLeft = (currentMargin - this.imgWidth).toString() + "px";
+    }
+
+    selectImage(event, index) {
+        console.log(event.target);
+        console.log(index);
     }
 }
 
