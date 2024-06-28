@@ -73,8 +73,10 @@ class ImageCarousel {
     }
 
     selectImage(event, index) {
-        console.log(event.target);
-        console.log(index);
+        // console.log(event.target);
+        // console.log(index);
+
+        this.container.style.marginLeft = -(this.imgWidth * index) + "px";
     }
 }
 
