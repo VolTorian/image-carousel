@@ -75,7 +75,12 @@ class ImageCarousel {
     selectImage(event, index) {
         // console.log(event.target);
         // console.log(index);
+        const circles = event.target.parentNode.querySelectorAll(".image-carousel-circle");
+        circles.forEach((circle) => {
+            circle.classList.remove("image-carousel-circle-selected");
+        });
 
+        event.target.classList.add("image-carousel-circle-selected");
         this.container.style.marginLeft = -(this.imgWidth * index) + "px";
     }
 }

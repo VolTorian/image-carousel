@@ -26,3 +26,7 @@ img {
     margin: 5px;
     display: inline-block;
 }
+
+.image-carousel-circle-selected {
+    background-color: gray;
+}
