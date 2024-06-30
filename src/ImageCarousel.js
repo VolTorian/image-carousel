@@ -16,6 +16,7 @@ class ImageCarousel {
         this.container.classList.add("image-carousel-container");
         const selector = document.createElement("div");
         selector.classList.add("image-carousel-selector");
+        this.circleSelectors = [];
 
         for (let i = 0; i < images.length; i++) {
             const imgElement = document.createElement("img");
@@ -26,6 +27,7 @@ class ImageCarousel {
             circle.classList.add("image-carousel-circle");
             circle.addEventListener("click", (event) => this.selectImage(event, i));
             selector.appendChild(circle);
+            this.circleSelectors.push(circle);
         }
 
         frame.appendChild(this.container);
@@ -61,15 +63,26 @@ class ImageCarousel {
         if (currentMargin === 0) {
             currentMargin = 0 - this.totalWidth;
         }
-        this.container.style.marginLeft = (currentMargin + this.imgWidth).toString() + "px";
+        let finalMargin = currentMargin + this.imgWidth;
+        this.container.style.marginLeft = finalMargin.toString() + "px";
+        this.circleSelectors.forEach((circle) => {
+            circle.classList.remove("image-carousel-circle-selected");
+        });
+        this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
     }
 
     nextImage() {
         let currentMargin = parseInt(this.containerStyle.marginLeft);
+
         if (currentMargin === 0 - this.totalWidth + this.imgWidth) {
             currentMargin = 0 + this.imgWidth;
         }
-        this.container.style.marginLeft = (currentMargin - this.imgWidth).toString() + "px";
+        let finalMargin = currentMargin - this.imgWidth;
+        this.container.style.marginLeft = finalMargin.toString() + "px";
+        this.circleSelectors.forEach((circle) => {
+            circle.classList.remove("image-carousel-circle-selected");
+        });
+        this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
     }
 
     selectImage(event, index) {
