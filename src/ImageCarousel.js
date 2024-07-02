@@ -30,6 +30,7 @@ class ImageCarousel {
             this.circleSelectors.push(circle);
         }
 
+        selector.firstChild.classList.add("image-carousel-circle-selected");
         frame.appendChild(this.container);
 
         const controls = document.createElement("div");
