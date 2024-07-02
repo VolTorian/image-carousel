@@ -14,7 +14,7 @@ h1 {
     margin-left: 0px;
 }
 
-img {
+.image-carousel-container > img {
     width: 200px;
 }
 
