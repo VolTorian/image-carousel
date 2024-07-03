@@ -59,7 +59,7 @@ class ImageCarousel {
     }
 
     prevImage() {
-        let currentMargin = parseInt(window.getComputedStyle(this.container).marginLeft);
+        let currentMargin = parseInt(this.containerStyle.marginLeft);
     
         if (currentMargin === 0) {
             currentMargin = 0 - this.totalWidth;
