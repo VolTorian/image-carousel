@@ -56,6 +56,8 @@ class ImageCarousel {
 
         prevButton.addEventListener("click", () => this.prevImage());
         nextButton.addEventListener("click", () => this.nextImage());
+
+        setInterval(() => this.nextImage(), 5000);
     }
 
     prevImage() {
