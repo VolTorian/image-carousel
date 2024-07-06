@@ -1,13 +1,20 @@
 import './styles.css';
 
 class ImageCarousel {
-    constructor(elementId, images) {
+    constructor(elementId, images, options = {}) {
         this.target = document.getElementById(elementId);
 
         if (this.target === null) {
             console.log(`Element with ID ${elementId} not found!`);
             return;
         }
+
+        const defaultOptions = { 
+            auto: true,
+            interval: 5000,
+        };
+
+        this.finalOptions = {...defaultOptions, ...options};
 
         const frame = document.createElement("div");
         frame.classList.add("image-carousel-frame");
@@ -57,7 +64,9 @@ class ImageCarousel {
         prevButton.addEventListener("click", () => this.prevImage());
         nextButton.addEventListener("click", () => this.nextImage());
 
-        this.timer = setInterval(() => this.nextImage(), 5000);
+        if (this.finalOptions.auto === true) {
+            this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+        }
     }
 
     prevImage() {
@@ -73,8 +82,10 @@ class ImageCarousel {
         });
         this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
 
-        clearInterval(this.timer);
-        this.timer = setInterval(() => this.nextImage(), 5000);
+        if (this.finalOptions.auto === true) {
+            clearInterval(this.timer);
+            this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+        }
     }
 
     nextImage() {
@@ -90,8 +101,10 @@ class ImageCarousel {
         });
         this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
 
-        clearInterval(this.timer);
-        this.timer = setInterval(() => this.nextImage(), 5000);
+        if (this.finalOptions.auto === true) {
+            clearInterval(this.timer);
+            this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+        }
     }
 
     selectImage(event, index) {
