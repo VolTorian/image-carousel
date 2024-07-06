@@ -57,7 +57,7 @@ class ImageCarousel {
         prevButton.addEventListener("click", () => this.prevImage());
         nextButton.addEventListener("click", () => this.nextImage());
 
-        setInterval(() => this.nextImage(), 5000);
+        this.timer = setInterval(() => this.nextImage(), 5000);
     }
 
     prevImage() {
@@ -72,6 +72,9 @@ class ImageCarousel {
             circle.classList.remove("image-carousel-circle-selected");
         });
         this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
+
+        clearInterval(this.timer);
+        this.timer = setInterval(() => this.nextImage(), 5000);
     }
 
     nextImage() {
@@ -86,6 +89,9 @@ class ImageCarousel {
             circle.classList.remove("image-carousel-circle-selected");
         });
         this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
+
+        clearInterval(this.timer);
+        this.timer = setInterval(() => this.nextImage(), 5000);
     }
 
     selectImage(event, index) {
@@ -96,6 +102,9 @@ class ImageCarousel {
 
         event.target.classList.add("image-carousel-circle-selected");
         this.container.style.marginLeft = -(this.imgWidth * index) + "px";
+
+        clearInterval(this.timer);
+        this.timer = setInterval(() => this.nextImage(), 5000);
     }
 }
 
