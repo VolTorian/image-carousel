@@ -116,8 +116,10 @@ class ImageCarousel {
         event.target.classList.add("image-carousel-circle-selected");
         this.container.style.marginLeft = -(this.imgWidth * index) + "px";
 
-        clearInterval(this.timer);
-        this.timer = setInterval(() => this.nextImage(), 5000);
+        if (this.finalOptions.auto === true) {
+            clearInterval(this.timer);
+            this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+        }
     }
 }
 
