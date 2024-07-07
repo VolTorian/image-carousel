@@ -12,6 +12,7 @@ class ImageCarousel {
         const defaultOptions = { 
             auto: true,
             interval: 5000,
+            timeout: 10000,
         };
 
         this.finalOptions = {...defaultOptions, ...options};
@@ -119,6 +120,15 @@ class ImageCarousel {
         if (this.finalOptions.auto === true) {
             clearInterval(this.timer);
             this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+        }
+    }
+
+    startTimeout() {
+        if (this.finalOptions.auto === true) {
+            clearInterval(this.timer);
+            setTimeout(() => {
+                this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+            }, this.finalOptions.timeout);
         }
     }
 }
