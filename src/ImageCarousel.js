@@ -84,11 +84,6 @@ class ImageCarousel {
             circle.classList.remove("image-carousel-circle-selected");
         });
         this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
-
-        // if (this.finalOptions.auto === true) {
-        //     clearInterval(this.timer);
-        //     this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
-        // }
     }
 
     nextImage() {
@@ -103,11 +98,6 @@ class ImageCarousel {
             circle.classList.remove("image-carousel-circle-selected");
         });
         this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
-
-        // if (this.finalOptions.auto === true) {
-        //     clearInterval(this.timer);
-        //     this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
-        // }
     }
 
     selectImage(event, index) {
@@ -119,10 +109,7 @@ class ImageCarousel {
         event.target.classList.add("image-carousel-circle-selected");
         this.container.style.marginLeft = -(this.imgWidth * index) + "px";
 
-        if (this.finalOptions.auto === true) {
-            clearInterval(this.interval);
-            this.interval = setInterval(() => this.nextImage(), this.finalOptions.interval);
-        }
+        this.startTimeout();
     }
 
     startTimeout() {
