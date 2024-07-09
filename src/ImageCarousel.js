@@ -62,11 +62,13 @@ class ImageCarousel {
         this.totalWidth = parseInt(window.getComputedStyle(document.querySelector(".image-carousel-container")).getPropertyValue("width"));
         this.containerStyle = window.getComputedStyle(this.container);
 
-        prevButton.addEventListener("click", () => this.prevImage());
-        nextButton.addEventListener("click", () => this.nextImage());
+        prevButton.addEventListener("click", () => this.prevClicked());
+        nextButton.addEventListener("click", () => this.nextClicked());
 
+        this.interval;
+        this.timeout;
         if (this.finalOptions.auto === true) {
-            this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+            this.interval = setInterval(() => this.nextImage(), this.finalOptions.interval);
         }
     }
 
@@ -83,10 +85,10 @@ class ImageCarousel {
         });
         this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
 
-        if (this.finalOptions.auto === true) {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
-        }
+        // if (this.finalOptions.auto === true) {
+        //     clearInterval(this.timer);
+        //     this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+        // }
     }
 
     nextImage() {
@@ -102,10 +104,10 @@ class ImageCarousel {
         });
         this.circleSelectors[finalMargin / -(this.imgWidth)].classList.add("image-carousel-circle-selected");
 
-        if (this.finalOptions.auto === true) {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
-        }
+        // if (this.finalOptions.auto === true) {
+        //     clearInterval(this.timer);
+        //     this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+        // }
     }
 
     selectImage(event, index) {
@@ -118,18 +120,30 @@ class ImageCarousel {
         this.container.style.marginLeft = -(this.imgWidth * index) + "px";
 
         if (this.finalOptions.auto === true) {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+            clearInterval(this.interval);
+            this.interval = setInterval(() => this.nextImage(), this.finalOptions.interval);
         }
     }
 
     startTimeout() {
         if (this.finalOptions.auto === true) {
-            clearInterval(this.timer);
-            setTimeout(() => {
-                this.timer = setInterval(() => this.nextImage(), this.finalOptions.interval);
+            clearInterval(this.interval);
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                this.nextImage();
+                this.interval = setInterval(() => this.nextImage(), this.finalOptions.interval);
             }, this.finalOptions.timeout);
         }
+    }
+
+    nextClicked() {
+        this.nextImage();
+        this.startTimeout();
+    }
+
+    prevClicked() {
+        this.prevImage();
+        this.startTimeout();
     }
 }
 
