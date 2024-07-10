@@ -59,9 +59,10 @@ class ImageCarousel {
 
         this.target.append(frame, controls);
 
-        this.imgWidth = parseInt(window.getComputedStyle(document.querySelector(".image-carousel-container img")).getPropertyValue("width"));
-        this.totalWidth = parseInt(window.getComputedStyle(document.querySelector(".image-carousel-container")).getPropertyValue("width"));
+        this.imgWidth = parseInt(window.getComputedStyle(this.target.querySelector(".image-carousel-container img")).getPropertyValue("width"));
+        this.totalWidth = parseInt(window.getComputedStyle(this.target.querySelector(".image-carousel-container")).getPropertyValue("width"));
         this.containerStyle = window.getComputedStyle(this.container);
+        console.log(this.totalWidth);
 
         prevButton.addEventListener("click", () => this.prevClicked());
         nextButton.addEventListener("click", () => this.nextClicked());
