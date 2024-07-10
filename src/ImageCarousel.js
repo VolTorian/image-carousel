@@ -16,6 +16,7 @@ class ImageCarousel {
         };
 
         this.finalOptions = {...defaultOptions, ...options};
+        this.target.classList.add("image-carousel");
 
         const frame = document.createElement("div");
         frame.classList.add("image-carousel-frame");

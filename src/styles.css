@@ -1,3 +1,7 @@
+.image-carousel {
+    display: inline-block;
+}
+
 .image-carousel-frame {
     width: 200px;
     height: 200px;
@@ -12,6 +16,15 @@
 
 .image-carousel-container > img {
     width: 200px;
+}
+
+.image-carousel-selector, .image-carousel-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.image-carousel-buttons > button {
+    width: 40%;
 }
 
 .image-carousel-circle {
