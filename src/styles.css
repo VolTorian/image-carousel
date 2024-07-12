@@ -1,5 +1,6 @@
 .image-carousel {
     display: inline-block;
+    padding: 1rem;
 }
 
 .image-carousel-frame {
@@ -12,6 +13,7 @@
     width: max-content;
     display: flex;
     margin-left: 0px;
+    transition-duration: 500ms;
 }
 
 .image-carousel-container > img {
